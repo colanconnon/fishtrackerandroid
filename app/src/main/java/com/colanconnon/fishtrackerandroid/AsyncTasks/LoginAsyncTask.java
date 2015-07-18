@@ -3,17 +3,26 @@ package com.colanconnon.fishtrackerandroid.AsyncTasks;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.colanconnon.fishtrackerandroid.Util.HttpRestService;
+import com.colanconnon.fishtrackerandroid.Util.HttpRestServices;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.RequestBody;
+
 import org.json.JSONObject;
 
 /**
  * Created by colanconnon on 7/15/15.
  */
 public class LoginAsyncTask extends AsyncTask<Void,Void,JSONObject> {
-    private Context context;
-    private String url;
+    private final String url = "http://fishtracker.azurewebsites.net/Authenticate";
+    private HttpRestService httpRestService;
+    private String username;
+    private String password;
 
-    public LoginAsyncTask(Context context){
-        this.context = context;
+    public LoginAsyncTask(String username, String password){
+        this.username = username;
+        this.password = password;
+        httpRestService = new HttpRestServices();
     }
 
     @Override
@@ -28,6 +37,12 @@ public class LoginAsyncTask extends AsyncTask<Void,Void,JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Void... params) {
-        return null;
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("username", username)
+                .add("password", password)
+                .add("grant_type", "password")
+                .build();
+        JSONObject json = httpRestService.HttpPostNoAuth(formBody, url);
+        return json;
     }
 }

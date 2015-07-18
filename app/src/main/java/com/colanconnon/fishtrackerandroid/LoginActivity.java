@@ -1,17 +1,75 @@
 package com.colanconnon.fishtrackerandroid;
 
-import android.support.v7.app.ActionBarActivity;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.colanconnon.fishtrackerandroid.AsyncTasks.LoginAsyncTask;
+
+import org.json.JSONObject;
 
 
-public class LoginActivity extends ActionBarActivity {
+
+
+public class LoginActivity extends Activity {
+
+    private Button btnLogin;
+    private Button btnSignUp;
+    private EditText emailTxt;
+    private EditText passwordTxt;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        emailTxt = (EditText) findViewById(R.id.txtEmail);
+        passwordTxt = (EditText) findViewById(R.id.txtPassword);
+        btnSignUp = (Button) findViewById(R.id.btnSignUp);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("CommitPrefEdits")
+            @Override
+            public void onClick(View v) {
+                LoginAsyncTask loginAsyncTask = new LoginAsyncTask(emailTxt.getText().toString(), passwordTxt.getText().toString());
+                try
+                {
+                    progress = ProgressDialog.show(LoginActivity.this , "Processing Login",
+                            "Please wait....", true);
+                    JSONObject json = loginAsyncTask.execute().get();
+                    progress.hide();
+                    String token = json.getString("access_token");
+                    SharedPreferences prefs = LoginActivity.this.getSharedPreferences(
+                            "com.colanconnon.fishtrackerandroid", Context.MODE_PRIVATE);
+                    prefs.edit().putString("Token", token).commit();
+                    Toast.makeText(LoginActivity.this, "You are now logged in!", Toast.LENGTH_LONG).show();
+
+                } catch (Exception e)
+                {
+                    Toast.makeText(LoginActivity.this, "The login has failed, please check connection and try again", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                LoginActivity.this.startActivity(intent);
+            }
+        });
     }
 
     @Override

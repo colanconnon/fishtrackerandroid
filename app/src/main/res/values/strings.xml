@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="blue">#337ab7</color>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 </resources>

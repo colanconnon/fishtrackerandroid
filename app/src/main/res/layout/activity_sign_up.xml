@@ -1,8 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
- tools:context=".LoginActivity">
+    android:layout_height="match_parent" android:background="@color/black"
+    tools:context="com.colanconnon.fishtrackerandroid.SignUpActivity">
 
     <TextView
         android:layout_width="fill_parent"
@@ -12,9 +11,9 @@
         android:layout_marginTop="40sp"
         android:layout_marginLeft="20sp"
         android:textSize="20sp"
-        android:id="@+id/lblEmail"
+        android:id="@+id/lblEmailRegister"
 
-    />
+        />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -23,8 +22,8 @@
         android:hint="Email"
         android:layout_margin="20sp"
         android:inputType="textEmailAddress"
-        android:id="@+id/txtEmail"
-        android:layout_below="@id/lblEmail"
+        android:id="@+id/txtEmailRegister"
+        android:layout_below="@id/lblEmailRegister"
         />
     <TextView
         android:layout_width="fill_parent"
@@ -33,8 +32,8 @@
         android:layout_marginLeft="20sp"
         android:textSize="20sp"
         android:textColor="@color/blue"
-        android:id="@+id/lblPassword"
-        android:layout_below="@+id/txtEmail"
+        android:id="@+id/lblPasswordRegister"
+        android:layout_below="@+id/txtEmailRegister"
 
         />
     <EditText
@@ -45,34 +44,44 @@
         android:hint="Password"
         android:layout_margin="20sp"
         android:inputType="textPassword"
-        android:id="@+id/txtPassword"
-        android:layout_below="@+id/lblPassword"
+        android:id="@+id/txtPasswordRegister"
+        android:layout_below="@+id/lblPasswordRegister"
+        />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm Password:"
+        android:layout_marginLeft="20sp"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:id="@+id/lblPasswordConfirmRegister"
+        android:layout_below="@+id/txtPasswordRegister"
+
+        />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20sp"
+        android:background="@color/white"
+        android:hint="Confirm Password"
+        android:layout_margin="20sp"
+        android:inputType="textPassword"
+        android:id="@+id/txtPasswordConfirmRegister"
+        android:layout_below="@+id/lblPasswordConfirmRegister"
         />
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="20sp"
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignUpRegister"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:background="@color/blue"
         android:textColor="@color/white"
-        android:text="Login"
+        android:text="Sign up"
         android:layout_marginTop="5sp"
-        android:layout_below="@id/txtPassword"
+        android:layout_below="@id/txtPasswordConfirmRegister"
         />
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="20sp"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
-        android:background="@color/blue"
-        android:textColor="@color/white"
-        android:text="Sign Up"
-        android:layout_marginTop="20sp"
-        android:layout_below="@id/btnLogin"
-        android:id="@+id/btnSignUp"
-        />
+
 
 </RelativeLayout>
