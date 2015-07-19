@@ -55,6 +55,8 @@ public class LoginActivity extends Activity {
                             "com.colanconnon.fishtrackerandroid", Context.MODE_PRIVATE);
                     prefs.edit().putString("Token", token).commit();
                     Toast.makeText(LoginActivity.this, "You are now logged in!", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(LoginActivity.this, FishCatchesActivity.class);
+                    LoginActivity.this.startActivity(intent);
 
                 } catch (Exception e)
                 {

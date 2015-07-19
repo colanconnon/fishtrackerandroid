@@ -22,6 +22,10 @@
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" >
         </activity>
+        <activity
+            android:name=".FishCatchesActivity"
+            android:label="@string/title_activity_fish_catches" >
+        </activity>
     </application>
 
 </manifest>
